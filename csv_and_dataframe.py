@@ -328,3 +328,71 @@ normsDF = normsDF.set_index('Crime')
 
 print(valuesDF)
 print(normsDF)
+
+theft_norms = []
+assault_norms = []
+battery_norms = []
+crime_count= []
+theft_count = []
+assault_count = []
+battery_count = []
+
+for norm in normsDF:
+    crime_count.append(sum(valuesDF[norm]))
+    theft_count.append(valuesDF[norm][0])
+    assault_count.append(valuesDF[norm][5])
+    battery_count.append(valuesDF[norm][3])       
+    theft_norms.append(normsDF[norm][0])
+    assault_norms.append(normsDF[norm][5])
+    battery_norms.append(normsDF[norm][3])
+
+plt.plot(years, crime_count)
+plt.title('Annually Reported Crime on the "Mag Mile"')
+plt.xlabel('Year')
+plt.ylabel('Crime Count')
+plt.show()
+
+plt.plot(years, theft_count)
+plt.title('Annually Reported Theft on the "Mag Mile"')
+plt.xlabel('Year')
+plt.ylabel('Crime Count')
+plt.show()
+
+plt.plot(years, assault_count)
+plt.title('Annually Reported Assault on the "Mag Mile"')
+plt.xlabel('Year')
+plt.ylabel('Crime Count')
+plt.show()
+
+plt.plot(years, battery_count)
+plt.title('Annually Reported Battery on the "Mag Mile"')
+plt.xlabel('Year')
+plt.ylabel('Crime Count')
+plt.show()
+
+plt.plot(years, theft_norms)
+plt.title('Theft as Percentage of Annual Crime, "Mag Mile", 2010-2019')
+plt.xlabel('Year')
+plt.ylabel('Percentage of Crime')
+plt.show()
+
+plt.plot(years, assault_norms)
+plt.title('Assault as Percentage of Annual Crime, "Mag Mile", 2010-2019')
+plt.xlabel('Year')
+plt.ylabel('Percentage of Crime')
+plt.show()
+
+plt.plot(years, battery_norms)
+plt.title('Battery as Percentage of Annual Crime, "Mag Mile", 2010-2019')
+plt.xlabel('Year')
+plt.ylabel('Percentage of Crime')
+plt.show()
+
+pcent_change = normsDF[2019][0] - normsDF[2010][0]
+print('Total Change: ' + str(round(pcent_change, 2)) + '%')
+
+'''
+for dataframe in dataframes:
+    summary = dataframes[dataframe].groupby(['primary_type'])['year'].count()
+    print(dataframes[dataframe].groupby(['primary_type']).describe())
+'''
